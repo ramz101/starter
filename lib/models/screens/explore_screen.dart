@@ -17,10 +17,17 @@ class ExploreScreen extends StatelessWidget {
         if(snapshot.connectionState == ConnectionState.done){
           final recipes = snapshot.data?.todayRecipes ?? [];
           // TODO: Replace this with TodayRecipeListView
-          return Center(
-            child: Container(
-              child: const Text('Show TodayRecipeListView'),
-            ),
+          return ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              TodayRecipeListView(recipes: snapshot.data?.todayRecipes?? []),
+              const SizedBox(height: 16,),
+              // Replace this with FriendPostView
+              Container(
+                height: 400,
+                color: Colors.green,
+              )
+            ],
           );
         } else {
           return const Center(
