@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
 
-import 'components.dart';
-import '/models/models.dart';
+import '../components/components.dart';
+import '../models/models.dart';
 
-class FriendPostListView extends StatelessWidget {
-  
-  final List<Post> friendPost;
+class FriendPostTile extends StatelessWidget {
+  final Post post;
 
-  const FriendPostListView({ 
+  const FriendPostTile({
     Key? key,
-    required this.friendPost,
-   }) : super(key: key);
+    required this.post,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        right: 16,
-        top: 0
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Social Chefs',
-            style: Theme.of(context).textTheme.headline1,
+    // 1
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        // 2
+        CircleImage(
+          imageProvider: AssetImage(post.profileImageUrl),
+          imageRadius: 20,
+        ),
+        // 3
+        const SizedBox(width: 16),
+        // 4
+        Expanded(
+          // 5
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 6
+              Text(post.comment),
+              // 7
+              Text(
+                '${post.timestamp} mins ago',
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+            ],
           ),
-          const SizedBox(height: 16,),
-          //Add the postlistview 
-
-          const SizedBox(height: 16,)
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
-
-
