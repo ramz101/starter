@@ -7,5 +7,6 @@ class ExploreData {
   ExploreData(
     this.todayRecipes,
     this.friendPosts,
+    
   );
 }
