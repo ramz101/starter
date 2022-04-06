@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 
-import '/components/components.dart';
-import '/models/models.dart';
+import '../components/components.dart';
+import '../models/models.dart';
 
-class RecipeGridView extends StatelessWidget {
-
+class RecipesGridView extends StatelessWidget {
+  // 1
   final List<SimpleRecipe> recipes;
 
-  const RecipeGridView({ Key? key,
-  required this.recipes
-   }) : super(key: key);
+  const RecipesGridView({
+    Key? key,
+    required this.recipes,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // 2
     return Padding(
       padding: const EdgeInsets.only(
         left: 16,
         right: 16,
         top: 16,
       ),
+      // 3
       child: GridView.builder(
+        // 4
         itemCount: recipes.length,
-
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-
-        itemBuilder: (context, index){
-          final SimpleRecipe = recipes[index];
-          return RecipeThumbnail(recipes: SimpleRecipe);
+        // 5
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+        itemBuilder: (context, index) {
+          // 6
+          final simpleRecipe = recipes[index];
+          return RecipeThumbnail(recipe: simpleRecipe);
         },
       ),
     );

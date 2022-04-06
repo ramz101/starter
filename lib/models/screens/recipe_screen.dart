@@ -4,11 +4,18 @@ import '/models/models.dart';
 import '/api/mock_fooderlich_service.dart';
 import '/components/components.dart';
 
-class RecipesScreen extends StatelessWidget {
-  // 1
-  final exploreService = MockFooderlichService();
+class RecipesScreen extends StatefulWidget {
 
   RecipesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RecipesScreen> createState() => _RecipesScreenState();
+  
+}
+
+class _RecipesScreenState extends State<RecipesScreen> {
+  // 1
+  final exploreService = MockFooderlichService();
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +26,8 @@ class RecipesScreen extends StatelessWidget {
         builder: (context, AsyncSnapshot<List<SimpleRecipe>> snapshot) {
           // 4
           if (snapshot.connectionState == ConnectionState.done) {
-            // TODO: Add RecipesGridView Here
+            return RecipesGridView(recipes: snapshot.data ?? []);
             // 5
-            return const Center(child: Text('Recipes Screen'));
           } else {
             // 6
             return const Center(child: CircularProgressIndicator());

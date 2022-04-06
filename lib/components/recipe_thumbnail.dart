@@ -24,8 +24,17 @@ class RecipeThumbnail extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(12),
               ),
+          ),
+          const SizedBox(height: 10,),
+          Text(
+            recipe.title,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.bodyText1
+          ),
+          Text(
+            recipe.duration,
+            style:  Theme.of(context).textTheme.bodyText1
           )
-          ,
         ],
       )
     );
